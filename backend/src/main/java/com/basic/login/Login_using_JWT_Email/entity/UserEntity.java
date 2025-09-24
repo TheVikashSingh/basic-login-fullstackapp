@@ -33,7 +33,7 @@ public class UserEntity {
     private String password;
     private String verifyOTP;
     private Boolean isAccountVerified;
-    private Long verifyOTPExpireAt;
+    private Long verifyOTPExpiredAt;
     private String resetOTP;
     private Long resetOTPExpiredAt;
 
