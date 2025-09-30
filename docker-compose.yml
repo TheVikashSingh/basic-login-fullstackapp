@@ -1,0 +1,44 @@
+services:
+  app:
+    build: ./backend/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - vikash-network
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/basic_login_database
+      SPRING_DATASOURCE_USERNAME: vikash
+      SPRING_DATASOURCE_PASSWORD: 42069
+
+
+  frontend:
+    build: ./frontend/
+    ports:
+      - "5173:80"
+    networks:
+      - vikash-network
+    depends_on:
+      - app
+
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: vikash
+      POSTGRES_PASSWORD: 42069
+      POSTGRES_DB: basic_login_database
+    #ports:
+    #  - "5432:5432"       # Map container port to host only if needed; #otherwise can skip#
+    networks:
+      - vikash-network
+    volumes:
+      - vikash-postgres-data:/var/lib/postgresql/data
+
+networks:
+  vikash-network:
+    driver: bridge
+
+volumes:
+  vikash-postgres-data:
