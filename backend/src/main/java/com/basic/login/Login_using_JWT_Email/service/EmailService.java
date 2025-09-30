@@ -21,7 +21,8 @@ public class EmailService {
         message.setFrom(fromEmail);
         message.setTo(toEmail);
         message.setSubject("Welcome to our Portal!");
-        message.setText("Hello "+name+",\n\nThanks for registering with us! \n\nAn awesome experience is ahead...");
+        message.setText("Hello "+name+",\n\nThanks for registering with us! I, Vikash Pratap Singh, am CEO of this platform, " +
+                "and we hope that you will have an awesome experience ahead..."+"\n\n Regards,\n Team Lockely");
         javaMailSender.send(message);
     }
 

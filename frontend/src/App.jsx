@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import { ToastContainer } from 'react-toastify'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ResetPassword from './pages/ResetPassword';
+import VerifyEmail from './pages/VerifyEmail';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path:"/reset-password",
     element: <ResetPassword />
+  },
+  {
+    path:"/verify-email",
+    element: <VerifyEmail />
   }
 ]);
 function App() {

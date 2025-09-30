@@ -7,6 +7,7 @@ import com.basic.login.Login_using_JWT_Email.dto.ResetPasswordRequest;
 import com.basic.login.Login_using_JWT_Email.service.AppUserDetailsService;
 import com.basic.login.Login_using_JWT_Email.service.ProfileService;
 import com.basic.login.Login_using_JWT_Email.util.JwtUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -121,5 +122,19 @@ public class AuthController {
         }catch (Exception ex){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,ex.getMessage());
         }
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response){
+        ResponseCookie cookie = ResponseCookie.from("jwt","")
+                .httpOnly(true)
+                .secure(false)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                .body("Logged Out Successfully");
     }
 }
